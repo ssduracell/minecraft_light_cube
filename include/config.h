@@ -3,8 +3,11 @@
 // --- Pins ---
 #define PIN_ENC_A D5
 #define PIN_ENC_B D6
-#define PIN_BTN D7
+#define PIN_ENC_BTN D7
 #define PIN_LED D4 // WS2812/SK6812
+
+// --- Serial ---
+#define SERIAL_BAUD 115200
 
 // --- LED-config ---
 #define LEDS_PER_SEGMENT 12

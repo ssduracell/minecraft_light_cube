@@ -10,6 +10,7 @@ bool DisplayUI::begin()
         return false;
     }
     _d.clearDisplay();
+    _d.dim(false); // Normal brightness
     _d.setTextColor(SSD1306_WHITE);
     _d.setTextSize(1);
     _d.setCursor(0, 0);
@@ -26,7 +27,7 @@ void DisplayUI::render(const Menu &menu, const LEDSegments &leds)
     _lastDraw = now;
 
     _d.clearDisplay();
-    drawHeader();
+    // drawHeader();
     drawMenu(menu);
     drawFooter(menu, leds);
     _d.display();
@@ -43,7 +44,8 @@ void DisplayUI::drawHeader()
 void DisplayUI::drawMenu(const Menu &menu)
 {
     // Drie regels: Mode / Brightness / Color — highlight actuele state
-    const int y0 = 14;
+    // const int y0 = 14;
+    const int y0 = 0;
     const int lh = 16;
 
     auto drawRow = [&](int row, const __FlashStringHelper *label, const String &val, bool sel)

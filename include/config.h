@@ -5,9 +5,8 @@
 #define PIN_ENC_B D6
 #define PIN_ENC_BTN D7
 #define PIN_LED D4 // WS2812/SK6812
-#define OLED_DC_PIN 8
-#define OLED_CS_PIN 10
-#define OLED_RESET_PIN 9
+#define PIN_ENC_LED_GREEN D3
+#define PIN_ENC_LED_RED D8
 
 // --- Serial ---
 #define SERIAL_BAUD 115200
@@ -21,7 +20,7 @@
 #define BUTTON_DEBOUNCE_MS 15
 #define MENU_PRINT_INTERVAL_MS 400 // alleen serial debug throttling
 
-// --- OLED (SSD1306 SPI) ---
+// --- OLED (SSD1306 I2C) ---
 #define OLED_WIDTH 128
 #define OLED_HEIGHT 64
 #define OLED_ADDR 0x78

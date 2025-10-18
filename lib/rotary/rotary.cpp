@@ -29,13 +29,15 @@ static void ISR_ATTR isrB()
         s_instanceB->handleISR();
 }
 
-Rotary::Rotary(uint8_t pinA, uint8_t pinB)
-    : _pinA(pinA), _pinB(pinB), _position(0), _lastState(0) {}
+Rotary::Rotary(uint8_t pinA, uint8_t pinB, uint8_t led_green, uint8_t led_red)
+    : _pinA(pinA), _pinB(pinB), _led_green(led_green), _led_red(led_red), _position(0), _lastState(0) {}
 
 void Rotary::begin()
 {
     pinMode(_pinA, INPUT_PULLUP);
     pinMode(_pinB, INPUT_PULLUP);
+    pinMode(_led_green, OUTPUT);
+    pinMode(_led_red, OUTPUT);
 
     uint8_t a = digitalRead(_pinA);
     uint8_t b = digitalRead(_pinB);
@@ -77,4 +79,14 @@ void Rotary::handleISR()
     {
         _position += d;
     }
+}
+
+void Rotary::setGreenLED(bool on)
+{
+    digitalWrite(_led_green, on ? HIGH : LOW);
+}
+
+void Rotary::setRedLED(bool on)
+{
+    digitalWrite(_led_red, on ? HIGH : LOW);
 }

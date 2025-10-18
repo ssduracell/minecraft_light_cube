@@ -50,7 +50,7 @@
 #include "menu.h"
 #include "display_ui.h"
 
-Rotary encoder(PIN_ENC_A, PIN_ENC_B);
+Rotary encoder(PIN_ENC_A, PIN_ENC_B, PIN_ENC_LED_GREEN, PIN_ENC_LED_RED);
 Button button(PIN_ENC_BTN, true, BUTTON_DEBOUNCE_MS);
 LEDSegments leds(PIN_LED);
 Menu menu(leds);
@@ -92,6 +92,18 @@ void loop()
   if (button.fell())
   {
     menu.select();
+  }
+
+  // LED status op basis van menu state
+  if (menu.state() == MENU_SELECT_MODE)
+  {
+    encoder.setGreenLED(true);
+    encoder.setRedLED(false);
+  }
+  else
+  {
+    encoder.setGreenLED(false);
+    encoder.setRedLED(true);
   }
 
   // Serial blijft debug-only en rustig
